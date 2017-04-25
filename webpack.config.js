@@ -25,8 +25,8 @@ module.exports = {
     output: {
         path: helpers.root('bundles'),
         publicPath: '/',
-        filename: 'core.umd.js',
-        library: 'ngx-select',
+        filename: 'ngx-infinite-select.umd.js',
+        library: 'ngx-infinite-select',
         libraryTarget: 'umd'
     },
 

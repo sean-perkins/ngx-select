@@ -2,10 +2,112 @@ import { Component, OnChanges, Input, forwardRef, ViewChild, ElementRef, SimpleC
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
-    moduleId: module.id,
     selector: 'ngx-select',
-    templateUrl: './ngx-select.component.html',
-    styleUrls: ['./ngx-select.component.scss'],
+    template: 
+    `
+<div class="select-container" (click)="toggleDisplay()">
+    <div class="select-input" [class.opened]="visible">
+        <span class="select-text" *ngIf="!visible"
+            [innerText]="inputPlaceholderText"></span>
+        <input autofocus type="text" class="search-input" *ngIf="visible" #searchInput
+            (click)="handleInputFocus($event)"
+            (keyup)="handleSearchEvent($event)"
+            [(ngModel)]="searchTerm"
+            [placeholder]="searchPlaceholderText" />
+        <span class="clear-search" *ngIf="visible"
+            (click)="clearSearch($event)">X</span>
+        <span class="caret vertical-center"></span>
+    </div>
+    <div class="select-options-container" *ngIf="visible">
+        <div class="select-options"
+            infinite-scroll
+            [scrollWindow]="false"
+            [infiniteScrollDistance]="3"
+            [infiniteScrollThrottle]="100"
+            (scrolledUp)="onScrollUp($event)"
+            (scrolled)="onScrollDown($event)">
+                <p *ngIf="(options === null || options.length < 1) && !hasSearchTerm"
+                    [innerText]="optionsPlaceholderText"></p>
+                <p *ngIf="(options === null || options.length < 1) && hasSearchTerm"
+                    [innerText]="noSearchResultsPlaceholderText"></p>
+                <div *ngFor="let option of displayedOptions" class="select-option-item" (click)="handleOptionSelect($event, option)">
+                    <md-checkbox
+                        [checked]="isSelected(option)"></md-checkbox>
+                    <span [innerText]="getOptionLabel(option)"></span>
+                </div>
+        </div>
+    </div>
+</div>
+
+    `,
+    styles: [
+`
+:host {
+    display:block;
+}
+.select-container {
+    position:relative;
+    cursor: pointer;
+    border:1px solid #D6D6E4;
+    border-radius:5px;
+    width:100%;
+    font-style:italic;
+    font-weight:500;
+}
+select-container .caret {
+    right: 10px;
+    color: #df4760;
+    font-size:15px;
+    border-top: 6px dashed;
+    border-right: 6px solid transparent;
+    border-left: 6px solid transparent;
+}
+.select-input {
+    position:relative;
+    padding:5px 10px;
+    color: #626272;
+}
+.select-input.opened {
+    padding:0 10px 0 0;
+}
+.select-input .search-input {
+    font-style:normal;
+    border-color: transparent;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius:5px;
+}
+.select-input .search-input:focus {
+    outline:0;
+}
+.select-input .search-input .clear-search {
+    font-size: 10px;
+    font-style: normal;
+    color: #626272;
+}
+.select-option-item {
+    padding:5px 10px;
+    border-top:1px solid #F5F5F5;
+}
+.select-option-item:first-child {
+    border-top:0;
+}
+.select-option-item:hover {
+    background-color:#F5F5F5;
+}
+.select-options {
+    position: absolute;
+    background: #FFFFFF;
+    width: 100%;
+    overflow-y:scroll;
+    max-height: 200px;
+}
+.select-options-container {
+    border: 1px solid;
+    display: block;
+    position: relative;
+    width: 100%;
+} `
+    ],
     providers: [
         {
             provide: NG_VALUE_ACCESSOR,

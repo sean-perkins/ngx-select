@@ -2,6 +2,8 @@
 
 A drop and drop plugin for Angular 4+. Includes basic functionality for searching, infinite scroll (leverages plugin) and dynamically pops items off the viewport to handle large collections (tested with 1 million records). 
 
+[Demo](http://plnkr.co/edit/aVvJj29LlkJP10DxdHnP?p=preview)
+
 ## Usage
 
 Install the plugin:
