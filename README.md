@@ -1,5 +1,8 @@
 # ngx-select
 
+[![npm](https://img.shields.io/npm/v/ngx-infinite-select.svg?maxAge=2592000?style=plastic)](https://www.npmjs.com/package/ngx-infinite-select)
+[![npm](https://img.shields.io/npm/dt/ngx-infinite-select.svg?maxAge=2592000?style=plastic)](https://www.npmjs.com/package/ngx-infinite-select)
+
 A drop and drop plugin for Angular 4+. Includes basic functionality for searching, infinite scroll (leverages plugin) and dynamically pops items off the viewport to handle large collections (tested with 1 million records). 
 
 [Demo](http://plnkr.co/edit/aVvJj29LlkJP10DxdHnP?p=preview)
