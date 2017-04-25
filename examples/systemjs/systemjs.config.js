@@ -7,7 +7,7 @@
     // map tells the System loader where to look for things
     var map = {
         'app': 'src',
-        'ng2-translate': 'node_modules/ng2-translate',
+        'ngx-select': 'node_modules/ngx-select',
         '@angular': 'node_modules/@angular',
         'rxjs': 'node_modules/rxjs'
     };
@@ -16,7 +16,7 @@
     var packages = {
         'app': {main: 'bootstrap.js', defaultExtension: 'js'},
         'rxjs': {defaultExtension: 'js'},
-        'ng2-translate': {main: 'bundles/ng2-translate.umd.js', defaultExtension: 'js'},
+        'ngx-select': {main: 'bundles/ngx-select.umd.js', defaultExtension: 'js'},
     };
 
     var ngPackageNames = [

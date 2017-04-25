@@ -2,7 +2,7 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { DropDownModule } from 'ngx-select';
+import { DropDownModule } from 'ngx-infinite-select';
 import { MaterialModule } from '@angular/material';
 import { AppComponent } from './app.component';
 

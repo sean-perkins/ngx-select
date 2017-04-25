@@ -2,7 +2,6 @@ var path = require('path');
 var webpack = require('webpack');
 
 var HtmlWebpackPlugin = require('html-webpack-plugin'),
-    CopyWebpackPlugin = require('copy-webpack-plugin'),
     {CheckerPlugin} = require('awesome-typescript-loader');
 
 function root(args) {
@@ -56,9 +55,6 @@ module.exports = {
             template: 'index.html',
             chunksSortMode: 'dependency'
         }),
-        new CopyWebpackPlugin([
-            {from: 'i18n/', to: 'i18n'}
-        ]),
 
         new webpack.optimize.OccurrenceOrderPlugin(true),
 
